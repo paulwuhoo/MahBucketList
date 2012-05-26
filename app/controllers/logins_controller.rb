@@ -14,10 +14,10 @@ class LoginsController < ApplicationController
   def create
     logger.debug "Helllllooooooooooo!"
 
-    user = User.find_by_login(params['login'])
+    user = User.find_by_email(params['email'])
     if user
       if user.authenticate(params[:password])
-        flash[:notice] = "Hello, #{user.name}!"
+        flash[:notice] = "Hello, #{user.first_name}!"
         session[:login_id] = user.id
         redirect_to root_url
       else

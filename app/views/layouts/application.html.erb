@@ -7,6 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="header">
+  	<h1>Mah BucketList</h1>
+  	<% if @user %>
+  		<p>Hello, <%= @user.first_name %>
+        <%= link_to "Logout", logout_url, :method => :delete %>
+  			</p>
+  	<% else %>
+  		<%= link_to "Login", new_login_url %>
+  		<%= link_to "Sign up", new_user_url %>
+  	<% end %>
+  </div>
+
+  <% if flash[:notice].present? %>
+  	<p style="color: white; background: green; padding: 6px"><%= flash[:notice] %></p>
+  <% end %>
+
 
 <%= yield %>
 
